@@ -3,11 +3,23 @@
 one:
   title: MyString
   description: MyText
-  image_url: MyString
+  image_url: MyString.gif
   price: 9.99
 
 two:
-  title: MyString
+  title: MyString2
   description: MyText
-  image_url: MyString
+  image_url: MyString.gif
+  image_url: MyString.gif
   price: 9.99
+
+
+ruby:
+  title: MyString3
+  description: MyText
+  image_url: MyString.gif
+  image_url: MyString.gif
+  price: 9.99
+
+
+
