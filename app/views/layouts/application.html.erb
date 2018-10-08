@@ -10,7 +10,25 @@
   </head>
 
 
-  <body class='<%= controller.controller_name %>'>
-    <%= yield %>
+  <body class="<%= controller.controller_name %>">
+  <div id="banner">
+    <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
+    <span class="title"><%= @page_title %></span>
+  </div>
+  <div id="columns">
+    <div id="side">
+      <ul>
+        <li><a href="http://www....">Home</a></li>
+        <li><a href="http://www..../faq">Questions</a></li>
+        <li><a href="http://www..../news">News</a></li>
+        <li><a href="http://www..../contact">Contact</a></li>
+      </ul>
+     <%= Time.new %>
+    </div>
+    <div id="main">
+      <%= yield %>
+    </div>
+  </div>
   </body>
+
 </html>

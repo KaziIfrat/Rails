@@ -6,16 +6,12 @@ class ProductTest < ActiveSupport::TestCase
   #
          fixtures :products
 
-  test "product attributes must not be empty - i18n" do
+  test "product attributes must not be empty " do
 
-             product = products(:two)
-   assert product.invalid?
-
-
-
-
-
- assert product.errors[:title].any? ,  product.errors[:title]
+    product = products(:two)
+  assert product.invalid?
+ puts product.errors[:price].any?
+ assert product.errors[:price].any? ,  "ppppppppp"
 
 =begin
 
