@@ -9,9 +9,10 @@ class ProductTest < ActiveSupport::TestCase
   test "product attributes must not be empty " do
 
     product = products(:two)
-  assert product.invalid?
- puts product.errors[:price].any?
- assert product.errors[:price].any? ,  "ppppppppp"
+  #assert product.invalid?
+
+    #puts "oooo"
+# assert !product.errors[:price].any? ,  "ppppppppp"
 
 =begin
 

@@ -10,8 +10,8 @@ class StoreControllerTest < ActionDispatch::IntegrationTest
 
     assert_select '#columns #side a', minimum: 4
     assert_select '#main .entry', 4
-    assert_select 'h3', 'MyString1'
-    byebug
+    assert_select 'h3', 'MyString'
+
    assert_select '.price', /\$[,\d]+\.\d\d/
 
    end

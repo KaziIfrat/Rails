@@ -1,5 +1,10 @@
 <h1>Store#index</h1>
-<p>Find me in app/views/store/index.html.erb</p>
+
+<%if session[:counter].nil? then %>
+    <p>Cart session hasnt been started</p>
+<%elsif session[:counter] >= 5 %>
+    <p><%=session[:counter] %></p>
+<% end %>
 
 <p id="notice"><%= notice %></p>
 <h1>Your Pragmatic Catalog</h1>
@@ -14,7 +19,8 @@
      <%= sanitize(product.description) %>
 
       <div class="price_line">
-        <span class="price"><%= product.price %></span>
+        <span class="price">$<%= product.price %></span>
+        <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
       </div>
     </div>
         <% end %>
