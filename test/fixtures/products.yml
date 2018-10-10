@@ -10,7 +10,7 @@ two:
   title: MyString
   description: MyText
   image_url: book.png
-  price: -49.54
+  price: 49.54
 
 three:
   title: MyString3
