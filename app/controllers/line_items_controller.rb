@@ -66,7 +66,7 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-
++
     @line_item.destroy
     respond_to do |format|
 

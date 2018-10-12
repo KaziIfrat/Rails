@@ -16,7 +16,6 @@ class Cart < ApplicationRecord
     else
       current_item = line_items.build(product_id: product.id)
 
-
     end
     current_item.totalPrice=current_item.total_price
     current_item
@@ -25,13 +24,15 @@ class Cart < ApplicationRecord
   def minus_product(product)
     current_item = line_items.find_by(product_id: product.id)
     if current_item.quantity==0
+      current_item.totalPrice=current_item.total_price
+
          redirect_to line_item_url(current_item), method: :delete
     else
       current_item.quantity -= 1
-
+      current_item.totalPrice=current_item.total_price
+      current_item
     end
-    current_item.totalPrice=current_item.total_price
-    current_item
+
   end
 
   def total_price
