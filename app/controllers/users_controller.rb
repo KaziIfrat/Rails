@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    render 'confirm', user: @user
   end
 
   # POST /users
@@ -58,8 +59,12 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'User #{user.name} was successfully destroyed.' }
       format.json { head :no_content }
+    end
+
+    rescue_from 'User::Error' do |exception|
+    redirect_to users_url, notice: exception.message
     end
   end
 
@@ -67,6 +72,15 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def check
+       uiu= User.find(params[:pwd])
+      sess= User.find_by( session[:user_id])
+      if uiu==sess
+        redirect_to store_index_url
+
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

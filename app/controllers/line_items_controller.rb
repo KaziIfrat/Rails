@@ -6,7 +6,7 @@ class LineItemsController < ApplicationController
 
   include CurrentCart
 
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :decrese_then_create]
   #before_action :resetCount, only: [:create]
   # GET /line_items
   # GET /line_items.json
@@ -42,13 +42,42 @@ class LineItemsController < ApplicationController
             format.js { @current_item = @line_item }
           #format.html { redirect_to @line_item.cart }
         #format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
-        format.json { render :show, status: :created, location: @line_item }
+            format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
   end
+
+  def decrease_then_create
+    current_item = LineItem.find(params[:id])
+
+    if current_item.quantity==1
+
+      redirect_to line_item_url(current_item), method: :delete
+    else
+      current_item.quantity -= 1
+      current_item.totalPrice=current_item.total_price
+
+      @line_item=current_item
+
+    respond_to do |format|
+
+      if @line_item.save
+        format.html { redirect_to store_index_url }
+        format.js { @current_item = @line_item }
+        #format.html { redirect_to @line_item.cart }
+        #format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+        format.json { render :show, status: :created, location: @line_item }
+      else
+        format.html { render :new }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      end
+    end
+      end
+  end
+
 
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
@@ -67,7 +96,7 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-+
+    @line_item=
     @line_item.destroy
     respond_to do |format|
 
